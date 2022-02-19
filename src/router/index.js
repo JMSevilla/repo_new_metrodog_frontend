@@ -1,23 +1,28 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
-
+function makeid(length) {
+  var result           = [];
+  var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  var charactersLength = characters.length;
+  for ( var i = 0; i < length; i++ ) {
+    result.push(characters.charAt(Math.floor(Math.random() *
+charactersLength)));
+ }
+ return result.join('');
+}
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: () => import("@/views/Home")
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+    path: '/adminregistration' + makeid(200),
+    name: 'AdminReg',
+    component: () => import("@/views/admin/adminRegistration")
+  },
 ]
 
 const router = new VueRouter({

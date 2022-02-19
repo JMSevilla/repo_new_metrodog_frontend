@@ -1,32 +1,39 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+  <div>
+    <router-view></router-view>
   </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script>
+import {mapGetters} from "vuex"
+export default {
+  data(){
+    return {
+      checkObject : {
+            trigger : 1
+        },
+    }
+  },
+  computed : {
+    ...mapGetters({
+      getcheckuserResponse : 'getcheckuserResponse'
+    })
+  },
+  created(){
+    this.oncheckuser()
+  },
+  methods : {
+    oncheckuser: function() {
+      this.$store.dispatch(`ACTIONS_CHECKUSER`, {
+        object : this.checkObject
+      }).then(() => {
+            switch(true){
+                        case this.getcheckuserResponse[0].key == 'admin_not_exist':
+                             this.$router.push({name : 'AdminReg'}).catch(() => {})
+                             break;
+                    }
+      })
+    }
+  }
 }
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+</script>
