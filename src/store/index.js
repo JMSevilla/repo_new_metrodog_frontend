@@ -202,6 +202,24 @@ export default new Vuex.Store({
           router.push({name : 'AdminSelection'}).catch(() => {})
         }
       })
+    },
+    LOGOUT_ADMINSELECTION({commit, state}, {object}) {
+      Element.MessageBox.confirm('Are you sure you want to logout ?', 'Logout', {
+        confirmButtonText: 'OK',
+        cancelButtonText: 'Cancel',
+        type: 'error'
+      }).then(() => {
+        state.loginState.screenLoading = true
+        setTimeout(() => {
+          const request = client.HTTP().post(`/api/logout.php`, d.HTTPHandling(object))
+          return request.then(({data}) => {
+            if(data[0].key === 'logout_success') {
+              state.loginState.screenLoading = false
+              router.push({name : 'Home'}).catch(() => {})
+            }
+          })
+        }, 2000)
+      })
     }  
   },
   modules: {
