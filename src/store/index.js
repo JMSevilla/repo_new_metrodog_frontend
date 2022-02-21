@@ -111,7 +111,7 @@ export default new Vuex.Store({
       commit(`realtime_token`, obj)
       let decision = getters.tokenDoneScan
       if(decision) {
-        let request = client.HTTP().post(`/api/CookieManagement`, d.HTTPHandling(obj))
+        let request = client.HTTP().post(`/api/CookieManagement.php`, d.HTTPHandling(obj))
         return request.then(( {data} )=> {
           console.log(data)
         })
