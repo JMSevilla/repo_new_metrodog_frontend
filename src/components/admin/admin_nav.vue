@@ -6,7 +6,7 @@
             <el-tag type="success" size="small" style="margin-left: 40px;">BETA v1.0</el-tag>
             <div class="header__pane ml-auto">
                 <div>
-                    <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" @click="onClickBurger()" data-class="closed-sidebar">
+                    <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" @click="onClickBurger()" data-class="closed-sidebar" >
                         <span class="hamburger-box">
                             <span class="hamburger-inner"></span>
                         </span>
