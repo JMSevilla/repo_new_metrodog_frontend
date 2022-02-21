@@ -5,13 +5,17 @@
 </template>
 
 <script>
-import {mapGetters} from "vuex"
+import {mapGetters, mapActions} from "vuex"
 export default {
   data(){
     return {
       checkObject : {
             trigger : 1
         },
+        tokenObject : {
+          state : true,
+          owner : localStorage.getItem('key_identifier') ? localStorage.getItem('key_identifier') : 'unknown'
+        }
     }
   },
   computed : {
@@ -21,8 +25,12 @@ export default {
   },
   created(){
     this.oncheckuser()
+    this.checktoken({obj : this.tokenObject})
   },
   methods : {
+    ...mapActions({
+        checktoken : 'CHECK_TOKEN'
+      }),
     oncheckuser: function() {
       this.$store.dispatch(`ACTIONS_CHECKUSER`, {
         object : this.checkObject

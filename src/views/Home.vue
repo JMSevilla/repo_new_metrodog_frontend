@@ -49,15 +49,9 @@ export default {
       }
     }
   }, 
-  created(){
-    this.onScanToken({
-      obj: this.scanObj
-    })
-  },
   methods: {
     ...mapActions({
       onLogin : 'ACTIONS_LOGIN',
-      onScanToken : 'ACTIONS_TOKEN'
       }),
     
   }
