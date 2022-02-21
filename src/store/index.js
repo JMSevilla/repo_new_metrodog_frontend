@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import client from "./httpauth"
 import d from "./handling"
 import Element from 'element-ui'
+import router from '../router/index'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -12,7 +13,10 @@ export default new Vuex.Store({
     adminregistrationResponse : null,
     loginState : {
       username : '', password : '', screenLoading : false,
-      info : [], tokenIdentifier : false
+      info : [], tokenIdentifier : false, 
+      setInfo : {
+        role : '', fname : '', lname : ''
+      }
     }
   },
   getters: {
@@ -30,6 +34,9 @@ export default new Vuex.Store({
     },
     tokenDoneScan : (state) => {
       return state.loginState.tokenIdentifier
+    },
+    getSetterInfo : (state) => {
+      return state.loginState.setInfo
     }
   },
   mutations: {
@@ -48,6 +55,13 @@ export default new Vuex.Store({
       return state.loginState.tokenIdentifier = false;
     }else{
       return state.loginState.tokenIdentifier = true;
+    }
+   },
+   MUTATE_GET_USERINFO : (state, data) => { 
+    return {
+    ...state.loginState.setInfo.fname = data.fname,
+    ...state.loginState.setInfo.role = data.role,
+    ...state.loginState.setInfo.lname = data.lname
     }
    }
   },
@@ -139,6 +153,28 @@ export default new Vuex.Store({
       localStorage.setItem('key_identifier', username)
       state.loginState.info.push({fname:response.data[0].key.fname,lname:response.data[0].key.lname,role:response.data[0].key.role})
       localStorage.setItem("info", JSON.stringify(state.loginState.info))
+    },
+    async CHECK_TOKEN({commit},{obj}){
+      await client.HTTP().post(`/api/login.php`, d.HTTPHandling(obj))
+      .then(resp => {
+        console.log(resp.data)
+       if(resp.data[0].key === 'invalid_token'){
+        return router.push({name : 'Home'}).catch(() => {})
+       }
+       else if(resp.data[0].key === 'token_exist_admin_selection'){
+         return router.push({name : 'AdminSelection'}).catch(() => {})
+       }
+      })
+    },
+    GET_USERINFO({commit}, {object}){
+      commit(`MUTATE_GET_USERINFO`, object)
+    },
+    PUSH_ADMIN_DASHBOARD({commit, state}){
+      state.loginState.screenLoading = true
+      setTimeout(() => {
+        router.push({name : 'Admin'}).catch(() => {}) 
+        state.loginState.screenLoading = false
+      }, 2000)
     }  
   },
   modules: {

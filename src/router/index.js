@@ -23,6 +23,23 @@ const routes = [
     name: 'AdminReg',
     component: () => import("@/views/admin/adminRegistration")
   },
+  {
+    path: '/adminselection' + makeid(200),
+    name: 'AdminSelection',
+    component: () => import("@/views/adminSelection")
+  },
+  {
+    path: '/admin' + makeid(200),
+    name: 'Admin',
+    component: () => import("@/views/admin/admin"),
+    children: [
+      {
+        path : '/admin/dashboard' + makeid(200),
+        name: 'Admin',
+        component: () => import("@/views/admin/admin_contents/dashboard"),
+      }
+    ]
+  },
 ]
 
 const router = new VueRouter({
