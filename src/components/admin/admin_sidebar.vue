@@ -44,7 +44,7 @@
 
                     <li class="app-sidebar__heading">User Access Management</li>
                     <li>
-                        <a  class="mm-active">
+                        <a class="mm-active">
                             <i class="metismenu-icon pe-7s-user">
                             </i>Manage Users
                         </a>
@@ -64,9 +64,9 @@
                             <i class="metismenu-icon pe-7s-shopbag"></i>
                             Products
                         </a>
-
+                    </li>
                     <li class="app-sidebar__heading">Reports Management</li>
-                    <li></li>
+                    <li>
                         <a  class="mm-active">
                             <i class="metismenu-icon pe-7s-note2"></i>
                             Sales Report
@@ -81,15 +81,15 @@
                             <i class="metismenu-icon pe-7s-cash"></i>
                             Payroll Reports
                         </a>
-
+                        </li>
                         <li class="app-sidebar__heading">Expenses Management</li>
                         
-
+                        <li>
                         <a  class="mm-active">
                             <i class="metismenu-icon pe-7s-piggy"></i>
                             Bills Expenses
                         </a>
-    
+                        </li>
                 </ul>
             </div>
         </div>

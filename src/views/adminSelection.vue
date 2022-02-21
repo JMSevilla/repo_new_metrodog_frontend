@@ -10,20 +10,20 @@
 
             <div class="row">
                 <div class="col-6">
-                    <el-card style="cursor: pointer;" shadow="always"  >
-                        <img class="card-img-top" style="width:78%;" src="@/assets/adminselect.webp" alt="Administrator Image">
+                    <el-card shadow="always"  >
+                        <img class="card-img-top" style="width:100%;" src="@/assets/adminselect.webp" alt="Administrator Image">
                         <div class="card-block ">
-                            <p class="card-text "><small class="text-muted">click to proceed to admin dashboard</small></p>
-                            <el-button @click="PUSH_ADMIN_DASHBOARD()" v-loading.fullscreen.lock="screenLoading" style="width: 100%;" plain type="primary" size="small">CONTINUE</el-button>
+                            <el-button @click="PUSH_ADMIN_DASHBOARD()" v-loading.fullscreen.lock="screenLoading" style="width: 100%;" plain type="primary" size="small">CLICK TO PROCEED TO ADMIN DASHBOARD</el-button>
                         </div>
                     </el-card>
                 </div>
 
                 <div class="col-6">
-                    <el-card style="cursor: pointer;" shadow="always">
-                        <img class="card-img-top" style="width:100%;" src="@/assets/payrollselect.jpg" alt="Payroll System Image">
+                    <el-card shadow="always">
+                        <img class="card-img-top" style="width:100%; margin-top:20px;" src="@/assets/payrollselect.jpg" alt="Payroll System Image">
                         <div class="card-block ">
-                            <p class="card-text "><small class="text-muted">click to proceed to payroll system</small></p>
+                            <!-- <p class="card-text "><small class="text-muted">click to proceed to payroll system</small></p> -->
+                            <el-button @click="PUSH_ADMIN_DASHBOARD()" v-loading.fullscreen.lock="screenLoading" style="width: 100%; margin-top:30px;" plain type="primary" size="small">CLICK TO PROCEED TO PAYROLL DASHBOARD</el-button>
                         </div>
                     </el-card>
                 </div>
