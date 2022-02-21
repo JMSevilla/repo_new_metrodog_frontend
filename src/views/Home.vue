@@ -1,6 +1,6 @@
 <template>
   <div>
-<div style="margin-top: 150px;" class="container">
+<div style="margin-top: 150px; margin-bottom: 80px;" class="container">
     <div class="row">
       <div style="margin-left: -70px;" class="col-sm">
 
