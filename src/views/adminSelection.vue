@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div style="margin-top: 20px; " class="container">
+        <div style="margin-top: 20px; margin-bottom: 30px; " class="container">
         <el-card shadow="always" style="padding: 50px;">
             <center>
                 <img src="@/assets/metrodogs logo.jpg" alt="metrodogs logo" style="width:20%; height: 20%;">
@@ -14,7 +14,7 @@
                         <img class="card-img-top" style="width:78%;" src="@/assets/adminselect.webp" alt="Administrator Image">
                         <div class="card-block ">
                             <p class="card-text "><small class="text-muted">click to proceed to admin dashboard</small></p>
-                            <el-button @click="PUSH_ADMIN_DASHBOARD()" v-loading.fullscreen.lock="screenLoading" style="width: 100%;" plain type="primary" size="small">CONTINUE</el-button>
+                            <el-button @click="PUSH_ADMIN_DASHBOARD({object : adminSelection})" v-loading.fullscreen.lock="screenLoading" style="width: 100%;" plain type="primary" size="small">CONTINUE</el-button>
                         </div>
                     </el-card>
                 </div>
@@ -57,8 +57,10 @@
 import {mapActions, mapGetters} from 'vuex'
 export default {
     data: () => ({
-          
-               
+          adminSelection : {
+              platformTrigger : true,
+              owner : localStorage.getItem('key_identifier') ? localStorage.getItem('key_identifier') : 'unknown'
+          }
     }),
     created() {
         this.GET_USERINFO({object : JSON.parse(localStorage.getItem("info"))[0]})

@@ -17,6 +17,11 @@ export default new Vuex.Store({
       setInfo : {
         role : '', fname : '', lname : ''
       }
+    },
+    securityManagement : {
+      SavedPlatform : {
+        platformResponse : null
+      }
     }
   },
   getters: {
@@ -37,6 +42,9 @@ export default new Vuex.Store({
     },
     getSetterInfo : (state) => {
       return state.loginState.setInfo
+    },
+    getSavedPlatform : (state) => {
+      return state.securityManagement.SavedPlatform.platformResponse
     }
   },
   mutations: {
@@ -63,6 +71,9 @@ export default new Vuex.Store({
     ...state.loginState.setInfo.role = data.role,
     ...state.loginState.setInfo.lname = data.lname
     }
+   },
+   MUTATE_GET_SAVEDPLATFORM : (state, data) => {
+     return state.securityManagement.SavedPlatform.platformResponse = data
    }
   },
   actions: {
@@ -91,6 +102,7 @@ export default new Vuex.Store({
                       response : response
                     })
                     state.loginState.screenLoading = false
+                    router.push({name : 'AdminSelection'}).catch(() => {})
                     break;
               case response.data[0].key === "account_disabled":
                                         Element.Notification.warning({
@@ -169,12 +181,27 @@ export default new Vuex.Store({
     GET_USERINFO({commit}, {object}){
       commit(`MUTATE_GET_USERINFO`, object)
     },
-    PUSH_ADMIN_DASHBOARD({commit, state}){
+     PUSH_ADMIN_DASHBOARD({commit, state}, {object}){
       state.loginState.screenLoading = true
       setTimeout(() => {
-        router.push({name : 'Admin'}).catch(() => {}) 
-        state.loginState.screenLoading = false
+         client.HTTP().post(`/api/adminSelection.php`, d.HTTPHandling(object))
+         .then(({data}) => {
+          if(data[0].key === 'update_admin'){
+            router.push({name : 'Admin'}).catch(() => {})
+          }
+        })
       }, 2000)
+    },
+    RETAIN_PLATFORM({commit, getters} , {object}) {
+      const request = client.HTTP().post(`/api/getsavedplatform.php`, d.HTTPHandling(object))
+      return request.then(( { data } ) => {
+        commit(`MUTATE_GET_SAVEDPLATFORM`, data[0].key)
+        if(getters.getSavedPlatform === 'to_platform_admin'){
+          router.push({name : 'Admin'}).catch(() => {})
+        } else if(getters.getSavedPlatform === 'to_platform_adminselection') {
+          router.push({name : 'AdminSelection'}).catch(() => {})
+        }
+      })
     }  
   },
   modules: {
