@@ -40,7 +40,7 @@
                             <span>User: {{getSetterInfo.fname + " " + getSetterInfo.lname}}</span>
                         </center>
                     </el-card>
-                    <button class="btn btn-block btn-danger" v-loading.fullscreen.lock="screenLoading"> Logout</button>
+                    <button class="btn btn-block btn-danger" v-loading.fullscreen.lock="screenLoading" @click="LOGOUT({object : adminSelectionLogout})"> Logout</button>
                 </div>
 
                 <div class="col-4">
@@ -60,6 +60,10 @@ export default {
           adminSelection : {
               platformTrigger : true,
               owner : localStorage.getItem('key_identifier') ? localStorage.getItem('key_identifier') : 'unknown'
+          },
+          adminSelectionLogout : {
+              logoutTrigger : true,
+              owner : localStorage.getItem('key_identifier') ? localStorage.getItem('key_identifier') : 'unknown'
           }
     }),
     created() {
@@ -75,7 +79,8 @@ export default {
         methods : {
             ...mapActions({
                 GET_USERINFO: 'GET_USERINFO',
-                PUSH_ADMIN_DASHBOARD: 'PUSH_ADMIN_DASHBOARD'
+                PUSH_ADMIN_DASHBOARD: 'PUSH_ADMIN_DASHBOARD',
+                LOGOUT: 'LOGOUT_ADMINSELECTION'
             }),
         }
 }
