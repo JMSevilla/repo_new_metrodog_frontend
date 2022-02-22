@@ -34,19 +34,21 @@ export default {
   computed : {
     ...mapGetters({
       getLoginResponse :'getLoginResponse',
-      screenLoading : 'screenLoading'
+      screenLoading : 'screenLoading',
     }),
-    
+  },
+  created() {
+    this.$store.state.loginState.screenLoading = false
   },
   data(){
     return {
       taskObject: {
         username : '', password : '', loginTrigger: 1
-      }, fullscreenLoading : false, 
+      }, 
       scanObj: {
         tokenName : localStorage.getItem('key_identifier'),
         scanCookie : true
-      }
+      },
     }
   }, 
   methods: {

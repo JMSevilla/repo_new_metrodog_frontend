@@ -71,16 +71,16 @@
                                         <h6 tabindex="-1" class="dropdown-header">Header</h6>
                                         <button type="button" tabindex="0" class="dropdown-item" @click="PUSH_ADMINSELECTION({object : adminChangePlatform})"><i class="fas fa-exchange-alt"></i>&nbsp;Change Platform</button>
                                         <div tabindex="-1" class="dropdown-divider"></div>
-                                        <button type="button" tabindex="0" class="dropdown-item" @click ="onLogout()" v-loading.fullscreen.lock="fullscreenLoadingOnLogout"><i class="fas fa-sign-out-alt"></i>&nbsp;Log Out</button>
+                                        <button type="button" tabindex="0" class="dropdown-item" @click ="ONLOGOUT({object : adminLogout})" v-loading.fullscreen.lock="screenLoaderadminLogout"><i class="fas fa-sign-out-alt"></i>&nbsp;Log Out</button>
                                     </div>
                                 </div>
                             </div>
                             <div class="widget-content-left  ml-3 header-user-info">
                                 <div class="widget-heading">
-                                    Alina Mclourd
+                                    {{getSetterInfo.fname + " " + getSetterInfo.lname}}
                                 </div>
                                 <div class="widget-subheading">
-                                    VP People Manager
+                                    {{getSetterInfo.role}}
                                 </div>
                             </div>
                         
@@ -96,11 +96,16 @@
 
 <script>
 import {mapActions, mapGetters} from 'vuex'
+import { PUSH_LOGOUT, SCREEN_LOADER } from "@/store/types"
 export default {
     data: () => ({
           adminChangePlatform : {
               platformTrigger : true,
               owner : localStorage.getItem('key_identifier') ? localStorage.getItem('key_identifier') : 'unknown'
+          },
+          adminLogout: {
+              logoutTrigger : true,
+              owner : localStorage.getItem('key_identifier') ? localStorage.getItem('key_identifier') : 'unknown' 
           }
     }),
     created() {
@@ -109,13 +114,16 @@ export default {
         computed : {
             ...mapGetters({
                 getSetterInfo : 'getSetterInfo',
+                screenLoaderadminLogout : SCREEN_LOADER,
+                getSetterInfo : 'getSetterInfo',
             })
         },
         
         methods : {
             ...mapActions({
                 GET_USERINFO: 'GET_USERINFO',
-                PUSH_ADMINSELECTION: 'PUSH_ADMINSELECTION'
+                PUSH_ADMINSELECTION: 'PUSH_ADMINSELECTION',
+                ONLOGOUT : PUSH_LOGOUT
             }),
             onClickBurger: function(){
             document.body.classList.toggle('closed-sidebar');
