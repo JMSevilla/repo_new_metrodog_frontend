@@ -4,6 +4,8 @@ import client from "./httpauth"
 import d from "./handling"
 import Element from 'element-ui'
 import router from '../router/index'
+import * as logout from "./modules/admin/dashboard/logout"
+import {GET_LOGOUT} from "./types"
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -22,7 +24,8 @@ export default new Vuex.Store({
       SavedPlatform : {
         platformResponse : null
       }
-    }
+    },
+    testlang: null
   },
   getters: {
     getLoginResponse : (state) => {
@@ -234,5 +237,6 @@ export default new Vuex.Store({
     }  
   },
   modules: {
+    logout
   }
 })

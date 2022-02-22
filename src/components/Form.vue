@@ -14,6 +14,6 @@ export default {
     },
     props : {
         taskObject : Object, fullscreenLoading: Boolean, onLogin: Function
-    }
+    },
 }
 </script>
