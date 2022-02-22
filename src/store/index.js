@@ -14,7 +14,7 @@ export default new Vuex.Store({
     getuser_checkResponse : null,
     adminregistrationResponse : null,
     loginState : {
-      username : '', password : '', screenLoading : false,
+      username : '', password : '', screenLoading : false, loadingscreen : false,
       info : [], tokenIdentifier : false, 
       setInfo : {
         role : '', fname : '', lname : ''
@@ -39,6 +39,9 @@ export default new Vuex.Store({
     },
     screenLoading : (state) => {
       return state.loginState.screenLoading
+    },
+    loadingscreen : (state) => {
+      return state.loginState.loadingscreen
     },
     tokenDoneScan : (state) => {
       return state.loginState.tokenIdentifier
@@ -186,6 +189,7 @@ export default new Vuex.Store({
     },
      PUSH_ADMIN_DASHBOARD({commit, state}, {object}){
       state.loginState.screenLoading = true
+      state.loginState.loadingscreen = false
       setTimeout(() => {
          client.HTTP().post(`/api/adminSelection.php`, d.HTTPHandling(object))
          .then(({data}) => {
@@ -196,8 +200,14 @@ export default new Vuex.Store({
       }, 2000)
     },
     PUSH_ADMINSELECTION({commit, state}, {object}){
-      state.loginState.screenLoading = false
-      setTimeout(() => {
+      Element.MessageBox.confirm('Are you sure you want to change platform ?', '', {
+        confirmButtonText: 'OK',
+        cancelButtonText: 'Cancel',
+        type: 'info'
+      }).then(() => {
+        state.loginState.screenLoading = false
+        state.loginState.loadingscreen = true
+        setTimeout(() => {
          client.HTTP().post(`/api/adminChangePlatform.php`, d.HTTPHandling(object))
          .then(({data}) => {
           if(data[0].key === 'update_to_adminselection'){
@@ -205,7 +215,8 @@ export default new Vuex.Store({
           }
         })
       }, 1000)
-    },
+    })
+  },
     RETAIN_PLATFORM({commit, getters} , {object}) {
       const request = client.HTTP().post(`/api/getsavedplatform.php`, d.HTTPHandling(object))
       return request.then(( { data } ) => {
