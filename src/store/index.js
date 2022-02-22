@@ -192,6 +192,17 @@ export default new Vuex.Store({
         })
       }, 2000)
     },
+    PUSH_ADMINSELECTION({commit, state}, {object}){
+      state.loginState.screenLoading = false
+      setTimeout(() => {
+         client.HTTP().post(`/api/adminChangePlatform.php`, d.HTTPHandling(object))
+         .then(({data}) => {
+          if(data[0].key === 'update_to_adminselection'){
+            router.push({name : 'AdminSelection'}).catch(() => {})
+          }
+        })
+      }, 1000)
+    },
     RETAIN_PLATFORM({commit, getters} , {object}) {
       const request = client.HTTP().post(`/api/getsavedplatform.php`, d.HTTPHandling(object))
       return request.then(( { data } ) => {

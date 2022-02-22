@@ -6,7 +6,7 @@
             <el-tag type="success" size="small" style="margin-left: 40px;">BETA v1.0</el-tag>
             <div class="header__pane ml-auto">
                 <div>
-                    <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar" >
+                    <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" @click="onClickBurger()" data-class="closed-sidebar" >
                         <span class="hamburger-box">
                             <span class="hamburger-inner"></span>
                         </span>
@@ -69,7 +69,7 @@
                                         <button type="button" tabindex="0" class="dropdown-item"><i class="fas fa-user"></i>&nbsp;User Account</button>
                                         <button type="button" tabindex="0" class="dropdown-item"><i class="fas fa-cog"></i>&nbsp;Settings</button>
                                         <h6 tabindex="-1" class="dropdown-header">Header</h6>
-                                        <button type="button" tabindex="0" class="dropdown-item" @click="changePlatform()"><i class="fas fa-exchange-alt"></i>&nbsp;Change Platform</button>
+                                        <button type="button" tabindex="0" class="dropdown-item" @click="PUSH_ADMINSELECTION({object : adminChangePlatform})"><i class="fas fa-exchange-alt"></i>&nbsp;Change Platform</button>
                                         <div tabindex="-1" class="dropdown-divider"></div>
                                         <button type="button" tabindex="0" class="dropdown-item" @click ="onLogout()" v-loading.fullscreen.lock="fullscreenLoadingOnLogout"><i class="fas fa-sign-out-alt"></i>&nbsp;Log Out</button>
                                     </div>
@@ -87,9 +87,41 @@
                         </div>
                     </div>
                 </div>
+                
             </div>
         </div>
     </div>
     </div>
 </template>
 
+<script>
+import {mapActions, mapGetters} from 'vuex'
+export default {
+    data: () => ({
+          adminChangePlatform : {
+              platformTrigger : true,
+              owner : localStorage.getItem('key_identifier') ? localStorage.getItem('key_identifier') : 'unknown'
+          }
+    }),
+    created() {
+        this.GET_USERINFO({object : JSON.parse(localStorage.getItem("info"))[0]})
+        },
+        computed : {
+            ...mapGetters({
+                getSetterInfo : 'getSetterInfo',
+            })
+        },
+        
+        methods : {
+            ...mapActions({
+                GET_USERINFO: 'GET_USERINFO',
+                PUSH_ADMINSELECTION: 'PUSH_ADMINSELECTION'
+            }),
+            onClickBurger: function(){
+            document.body.classList.toggle('closed-sidebar');
+            localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('closed-sidebar'));
+            }
+           
+        }
+}
+</script>
