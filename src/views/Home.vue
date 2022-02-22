@@ -36,7 +36,7 @@ export default {
       getLoginResponse :'getLoginResponse',
       screenLoading : 'screenLoading'
     }),
-    
+
   },
   data(){
     return {
@@ -52,8 +52,7 @@ export default {
   methods: {
     ...mapActions({
       onLogin : 'ACTIONS_LOGIN',
-      }),
-    
+      })
   }
 }
 </script>

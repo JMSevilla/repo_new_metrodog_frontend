@@ -69,9 +69,9 @@
                                         <button type="button" tabindex="0" class="dropdown-item"><i class="fas fa-user"></i>&nbsp;User Account</button>
                                         <button type="button" tabindex="0" class="dropdown-item"><i class="fas fa-cog"></i>&nbsp;Settings</button>
                                         <h6 tabindex="-1" class="dropdown-header">Header</h6>
-                                        <button type="button" tabindex="0" class="dropdown-item" @click="PUSH_ADMINSELECTION({object : adminChangePlatform})"><i class="fas fa-exchange-alt"></i>&nbsp;Change Platform</button>
+                                        <button type="button" tabindex="0" class="dropdown-item" @click="PUSH_ADMINSELECTION({object : adminChangePlatform})" v-loading.fullscreen.lock="loadingscreen" ><i class="fas fa-exchange-alt"></i>&nbsp;Change Platform</button>
                                         <div tabindex="-1" class="dropdown-divider"></div>
-                                        <button type="button" tabindex="0" class="dropdown-item" @click ="onLogout()" v-loading.fullscreen.lock="fullscreenLoadingOnLogout"><i class="fas fa-sign-out-alt"></i>&nbsp;Log Out</button>
+                                        <button type="button" tabindex="0" class="dropdown-item" @click ="onLogout()"><i class="fas fa-sign-out-alt"></i>&nbsp;Log Out</button>
                                     </div>
                                 </div>
                             </div>
@@ -101,7 +101,8 @@ export default {
           adminChangePlatform : {
               platformTrigger : true,
               owner : localStorage.getItem('key_identifier') ? localStorage.getItem('key_identifier') : 'unknown'
-          }
+          },
+     
     }),
     created() {
         this.GET_USERINFO({object : JSON.parse(localStorage.getItem("info"))[0]})
@@ -109,6 +110,7 @@ export default {
         computed : {
             ...mapGetters({
                 getSetterInfo : 'getSetterInfo',
+                loadingscreen: 'loadingscreen'
             })
         },
         
