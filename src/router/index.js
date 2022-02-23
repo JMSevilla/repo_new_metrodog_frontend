@@ -37,6 +37,11 @@ const routes = [
         path : '/admin/dashboard' + makeid(200),
         name: 'Admin',
         component: () => import("@/views/admin/admin_contents/dashboard"),
+      },
+      {
+        path : '/supplier/transactionHistory' + makeid(200),
+        name: 'TransactionHistory',
+        component: () => import("@/views/supplier/transactionHistory"),
       }
     ]
   },
