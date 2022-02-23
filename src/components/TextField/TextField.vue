@@ -25,4 +25,4 @@ export default {
         trigger: String
     }
 }
-</script>
+</script>   
