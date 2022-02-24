@@ -7,3 +7,9 @@ export const SCREEN_LOADER = "SCREEN_LOADER";
 
 //mutation conditional
 export const MUTATE_LOGOUT_VALIDATE = "MUTATE_LOGOUT_VALIDATE"
+
+//Fetch Branches
+
+export const PUSH_BRANCHES = "PUSH_BRANCHES"
+export const GET_BRANCHES = "GET_BRANCHES"
+export const MUTATE_BRANCHES = "MUTATE_BRANCHES"
