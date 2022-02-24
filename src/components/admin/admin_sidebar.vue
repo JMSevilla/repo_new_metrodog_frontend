@@ -55,7 +55,7 @@
               <a class="mm-active">
                 <i class="metismenu-icon pe-7s-user"> </i>Manage Users
               </a>
-              <a class="mm-active">
+              <a class="mm-active" style="cursor: pointer;" @click="onadduser">
                 <i class="metismenu-icon pe-7s-add-user"> </i>Add User
               </a>
             </li>
@@ -119,6 +119,9 @@ export default {
     onTransactionHistory() {
       this.$router.push({ name: "TransactionHistory" }).catch(() => {});
     },
+    onadduser: function() {
+      this.$router.push({name : 'Add User'}).catch(() => {})
+    }
   },
 };
 </script>
