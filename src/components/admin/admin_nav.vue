@@ -69,7 +69,7 @@
                                         <button type="button" tabindex="0" class="dropdown-item"><i class="fas fa-user"></i>&nbsp;User Account</button>
                                         <button type="button" tabindex="0" class="dropdown-item"><i class="fas fa-cog"></i>&nbsp;Settings</button>
                                         <h6 tabindex="-1" class="dropdown-header">Header</h6>
-                                        <button type="button" tabindex="0" class="dropdown-item" @click="PUSH_ADMINSELECTION({object : adminChangePlatform})"><i class="fas fa-exchange-alt"></i>&nbsp;Change Platform</button>
+                                        <button type="button" tabindex="0" class="dropdown-item" @click="PUSH_ADMINSELECTION({object : adminChangePlatform})" v-loading.fullscreen.lock="loadingscreen"><i class="fas fa-exchange-alt"></i>&nbsp;Change Platform</button>
                                         <div tabindex="-1" class="dropdown-divider"></div>
                                         <button type="button" tabindex="0" class="dropdown-item" @click ="ONLOGOUT({object : adminLogout})" v-loading.fullscreen.lock="screenLoaderadminLogout"><i class="fas fa-sign-out-alt"></i>&nbsp;Log Out</button>
                                     </div>
@@ -116,6 +116,7 @@ export default {
                 getSetterInfo : 'getSetterInfo',
                 screenLoaderadminLogout : SCREEN_LOADER,
                 getSetterInfo : 'getSetterInfo',
+                loadingscreen : 'loadingscreen',
             })
         },
         

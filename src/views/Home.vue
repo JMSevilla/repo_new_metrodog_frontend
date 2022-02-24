@@ -10,7 +10,7 @@
               <center>
                  <img src="@/assets/metrodogs logo.jpg" style="width: 50%; height: auto;" class="img-fluid" alt="No image">
                   </center>
-              <Form  :taskObject="taskObject" :fullscreenLoading="screenLoading" :onLogin="onLogin" />
+              <Form  :taskObject="taskObject" :fullscreenLoading="screenLoading" :onLogin="onLogin"/>
                <el-link type="primary" style="margin-left:75%;"  data-toggle="modal" data-target="#exampleModalCenter">Forget Password?</el-link>
               </el-card>
              
