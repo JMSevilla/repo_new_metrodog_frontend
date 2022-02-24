@@ -5,7 +5,7 @@ import d from "./handling"
 import Element from 'element-ui'
 import router from '../router/index'
 import * as logout from "./modules/admin/dashboard/logout"
-import {GET_LOGOUT, PUSH_BRANCHES, GET_BRANCHES, MUTATE_BRANCHES} from "./types"
+import {GET_LOGOUT, PUSH_BRANCHES, GET_BRANCHES, MUTATE_BRANCHES, PUSH_QUESTIONS, MUTATE_QUESTIONS, GET_QUESTIONS} from "./types"
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -253,13 +253,22 @@ export default new Vuex.Store({
       state : {
         branchList : []
       },
+      questions : {
+          state: {
+            questionList : []
+          }
+      },
       mutations : {
         [MUTATE_BRANCHES] : (state, data) => {
           return state.branchList = data
+        },
+        [MUTATE_QUESTIONS] : (state, data) => {
+          return state.questionList = data
         }
       },
       getters : {
-        [GET_BRANCHES] : state => state.branchList
+        [GET_BRANCHES] : state => state.branchList,
+        [GET_QUESTIONS] : state => state.questionList
       }, 
       actions : {
         [PUSH_BRANCHES]({commit}, {val}){
@@ -269,6 +278,15 @@ export default new Vuex.Store({
           const request = client.HTTP().post(`/api/fetchbranches.php`, d.HTTPHandling(arr))
           return request.then(( {data} ) => {
             commit(MUTATE_BRANCHES, data)
+          })
+        },
+        [PUSH_QUESTIONS]({commit}, {val}){
+          let arr = {
+            questionTrigger : val
+          }
+          const request = client.HTTP().post(`/api/fetchquestions.php`, d.HTTPHandling(arr))
+          return request.then(( {data} ) => {
+            commit(MUTATE_QUESTIONS, data)
           })
         }
       }
