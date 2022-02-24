@@ -5,7 +5,7 @@ import d from "./handling"
 import Element from 'element-ui'
 import router from '../router/index'
 import * as logout from "./modules/admin/dashboard/logout"
-import {GET_LOGOUT} from "./types"
+import {GET_LOGOUT, PUSH_BRANCHES, GET_BRANCHES, MUTATE_BRANCHES} from "./types"
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -248,6 +248,30 @@ export default new Vuex.Store({
     }  
   },
   modules: {
-    logout
+    logout,
+    branches : {
+      state : {
+        branchList : []
+      },
+      mutations : {
+        [MUTATE_BRANCHES] : (state, data) => {
+          return state.branchList = data
+        }
+      },
+      getters : {
+        [GET_BRANCHES] : state => state.branchList
+      }, 
+      actions : {
+        [PUSH_BRANCHES]({commit}, {val}){
+          let arr = {
+            branchTrigger : val
+          }
+          const request = client.HTTP().post(`/api/fetchbranches.php`, d.HTTPHandling(arr))
+          return request.then(( {data} ) => {
+            commit(MUTATE_BRANCHES, data)
+          })
+        }
+      }
+    }
   }
 })

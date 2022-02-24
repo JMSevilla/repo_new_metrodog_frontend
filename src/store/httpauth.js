@@ -1,6 +1,6 @@
 import axios from 'axios'
 var request = require('ajax-request');
-const requiredURL = "http://localhost:8080/repo_new_metrodog_backend";
+const requiredURL = "http://localhost/md_backend";
 let headers = new Headers();
 headers.append('Access-Control-Allow-Origin', '*');
 headers.append('Access-Control-Allow-Credentials', 'true');

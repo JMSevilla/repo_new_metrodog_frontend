@@ -42,6 +42,11 @@ const routes = [
         path : '/supplier/transactionHistory' + makeid(200),
         name: 'TransactionHistory',
         component: () => import("@/views/supplier/transactionHistory"),
+      },
+      {
+        path : '/uam/adduser' + makeid(200),
+        name: 'Add User',
+        component: () => import("@/views/admin/admin_contents/admin_adduser"),
       }
     ]
   },
