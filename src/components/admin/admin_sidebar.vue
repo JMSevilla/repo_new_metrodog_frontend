@@ -8,8 +8,7 @@
             <button
               type="button"
               class="hamburger close-sidebar-btn hamburger--elastic"
-              data-class="closed-sidebar"
-            >
+              data-class="closed-sidebar">
               <span class="hamburger-box">
                 <span class="hamburger-inner"></span>
               </span>
@@ -33,8 +32,7 @@
         <span>
           <button
             type="button"
-            class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav"
-          >
+            class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
             <span class="btn-icon-wrapper">
               <i class="fa fa-ellipsis-v fa-w-6"></i>
             </span>
@@ -75,6 +73,10 @@
             </li>
              <li class="app-sidebar__heading">Supplier Management</li>
             <li>
+              <a style="cursor:pointer;" @click="onTransactionHistory()" class="mm-active">
+                <i class="metismenu-icon pe-7s-users"></i>
+                Sales Order
+              </a>
               <a style="cursor:pointer;" @click="onTransactionHistory()" class="mm-active">
                 <i class="metismenu-icon pe-7s-users"></i>
                 Transaction History
