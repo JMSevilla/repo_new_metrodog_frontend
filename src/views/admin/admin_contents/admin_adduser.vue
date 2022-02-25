@@ -18,11 +18,11 @@
             </div>
             <div v-else-if="active == 2">
                 <UserCredentials :credentialsInfo="info[0].credentialsInfo"/>
-                <el-button type="primary" style="float:right; margin:10px;" @click="onNext">Next</el-button>
+                <el-button type="primary" style="float:right; margin:10px;" @click="onPreview">Next</el-button>
                 <el-button type="primary" style="float:right; margin:10px;" @click="onBack">Back</el-button>
             </div>
              <div v-else-if="active == 3">
-                <!-- <DataPreview :userInfo="info[0].userInfo"/> -->
+                <DataPreview :userInfo="info[0].userInfo" :SAInfo="info[0].SAInfo" :credentialsInfo="info[0].credentialsInfo"/>
                 <el-button type="primary" style="float:right; margin:10px;" @click="onSave">Save</el-button>
                 <el-button type="primary" style="float:right; margin:10px;" @click="onBack">Back</el-button>
             </div>
@@ -45,12 +45,12 @@ export default {
     },
     data(){
         return {
-            active : 1,
+            active : 2,
             info : [
                    {
                     userInfo : {
-                        firstname : 'w', lastname: 'w', PA: 'w',  
-                        contactnum: '123', email : '', 
+                        firstname : '', lastname: '', PA: '',  
+                        contactnum: '', email : '', 
                         branches : [], branch : ''
                     },
                     SAInfo : {
@@ -91,11 +91,55 @@ export default {
             fetchQuestions : PUSH_QUESTIONS
             }), 
             onNext() {
+                sys.user_access_management_validation_primaryinfo(this.info)
+                .then((r) => {
+                    if((r) == 'not empty'){
+                    this.active++;
+                    }else if((r) =='invalid phone number'){
+                        this.$notify.error({
+                        title: 'Invalid',
+                        message: 'Please enter a valid contact number',
+                        offset: 100
+                        });
+                    }else if((r) == 'invalid email address'){
+                        this.$notify.error({
+                        title: 'Invalid',
+                        message: 'Please enter a valid email address',
+                        offset: 100
+                        });
+                    } else {
+                        this.$notify.error({
+                        title: 'Info',
+                        message: 'Please complete user information',
+                        offset: 100
+                        });
+
+                    }
+                })
+            },
+            onPreview() {
+                sys.user_access_management_validation_credentials(this.info)
+                .then((r) => {
+                    if((r) == 'not empty'){
+                        this.active++;
+                    } 
+                    else if((r) == 'password not match'){
+                        this.$notify.error({
+                        title: 'Warning',
+                        message: 'Password does not match',
+                        offset: 100
+                        });
+                    }
+                    else {
+                        this.$notify.error({
+                        title: 'Info',
+                        message: 'Please complete user credentials',
+                        offset: 100
+                        });
+
+                    }
                 
-                sys.user_acces_management_validation_primaryinfo(this.info)
-                // .then((r) => {
-                //     console.log(r)
-                // })
+                })
             },
             onBack: function(){
             if(this.active == 1){

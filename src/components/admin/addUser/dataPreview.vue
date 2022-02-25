@@ -40,7 +40,7 @@
                 type="text"
                 disabled="true"
                 trigger="2"
-                v-model="userInfo.SA"
+                v-model="SAInfo.SA"
                 style="margin-top: 10px; width: 100%;"
                  />
             </div>
@@ -89,7 +89,7 @@
                 type="text"
                 disabled="true"
                 trigger="1"
-                v-model="userInfo.username"
+                v-model="credentialsInfo.username"
                 style="margin-top: 10px;"
                  />
             </div>
@@ -100,7 +100,7 @@
                 disabled="true"
                 clearable show-password
                 trigger="1"
-                v-model="userInfo.password"
+                v-model="credentialsInfo.password"
                 style="margin-top: 10px;"
                  />
             </div>
@@ -112,7 +112,7 @@
                 disabled="true"
                 clearable show-password
                 trigger="1"
-                v-model="userInfo.conPass"
+                v-model="credentialsInfo.conPass"
                 style="margin-top: 10px; width: 100%;"
                  />
             </div>
@@ -121,7 +121,7 @@
         <div class="row">
             <div class="col-sm">
                 <label style="margin-top: 10px;">User Type</label>
-               <el-select style="width: 100%; " v-model="userInfo.userType" filterable disabled="true">
+               <el-select style="width: 100%; " v-model="credentialsInfo.userType" filterable disabled="true">
                     <el-option value="1" label="Administrator">
                             </el-option>
                             <el-option value="2" label="Cashier">
@@ -131,7 +131,7 @@
 
             <div class="col-sm">
                 <label style="margin-top: 10px;">Security Question</label>
-               <el-select style="width: 100%; " v-model="userInfo.secQuestions" filterable disabled="true">
+               <el-select style="width: 100%; " v-model="credentialsInfo.secQuestions" filterable disabled="true">
                     <el-option
                     v-for="item in userInfo.questions"
                     :key="item.question"
@@ -147,7 +147,7 @@
                 type="text"
                 disabled="true"
                 trigger="1"
-                v-model="userInfo.secAnswer"
+                v-model="credentialsInfo.secAnswer"
                 style="margin-top: 10px; width: 100%;"
                  />
             </div>
@@ -164,7 +164,7 @@ export default {
         TextField
     },
     props : {
-        userInfo : Object
+        userInfo : Object, SAInfo: Object, credentialsInfo: Object
     }
 }
 </script>
