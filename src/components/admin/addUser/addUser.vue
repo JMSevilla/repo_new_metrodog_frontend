@@ -28,7 +28,7 @@
                 label="Primary Address"
                 type="text"
                 placeholder="Enter primary address"
-                trigger="2"
+                trigger="1"
                 v-model="userInfo.PA"
                 style="margin-top: 15px; width: 100%;"
                  />
@@ -38,7 +38,7 @@
                 label="Secondary Address"
                 type="text"
                 placeholder="Enter secondary address"
-                trigger="2"
+                trigger="1"
                 v-model="SAInfo.SA"
                 style="margin-top: 15px; width: 100%;"
                  />
@@ -48,7 +48,7 @@
             <div class="col-sm">
                 <TextField
                 label="Contact Number"
-                type="number"
+                type="text"
                 placeholder="Enter contact number"
                 trigger="1"
                 v-model="userInfo.contactnum"

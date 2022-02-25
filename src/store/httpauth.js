@@ -1,6 +1,6 @@
 import axios from 'axios'
 var request = require('ajax-request');
-const requiredURL = process.env.VUE_APP_DEV_1_URL;
+const requiredURL = process.env.VUE_APP_DEV_2_URL;
 let headers = new Headers();
 headers.append('Access-Control-Allow-Origin', '*');
 headers.append('Access-Control-Allow-Credentials', 'true');
