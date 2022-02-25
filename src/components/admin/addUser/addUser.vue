@@ -39,7 +39,7 @@
                 type="text"
                 placeholder="Enter secondary address"
                 trigger="2"
-                v-model="userInfo.SA"
+                v-model="SAInfo.SA"
                 style="margin-top: 15px; width: 100%;"
                  />
             </div>
@@ -89,7 +89,7 @@ export default {
         TextField
     },
     props : {
-        userInfo : Object
+        userInfo : Object, SAInfo: Object
     }
 }
 </script>

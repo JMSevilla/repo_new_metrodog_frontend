@@ -7,7 +7,7 @@
                 type="text"
                 placeholder="Enter Username"
                 trigger="1"
-                v-model="userInfo.username"
+                v-model="credentialsInfo.username"
                 style="margin-top: 15px;"
                  />
             </div>
@@ -18,7 +18,7 @@
                 clearable show-password
                 placeholder="Enter Password"
                 trigger="1"
-                v-model="userInfo.password"
+                v-model="credentialsInfo.password"
                 style="margin-top: 15px;"
                  />
             </div>
@@ -30,7 +30,7 @@
                 clearable show-password
                 placeholder="Enter confirm password"
                 trigger="1"
-                v-model="userInfo.conPass"
+                v-model="credentialsInfo.conPass"
                 style="margin-top: 15px; width: 100%;"
                  />
             </div>
@@ -39,7 +39,7 @@
         <div class="row">
             <div class="col-sm">
                 <label style="margin-top: 15px;">Select User Type</label>
-               <el-select style="width: 100%; " v-model="userInfo.userType" filterable placeholder="Select Branch">
+               <el-select style="width: 100%; " v-model="credentialsInfo.userType" filterable placeholder="Select Branch">
                     <el-option value="1" label="Administrator">
                             </el-option>
                             <el-option value="2" label="Cashier">
@@ -49,9 +49,9 @@
 
             <div class="col-sm">
                 <label style="margin-top: 15px;">Select Security Question</label>
-               <el-select style="width: 100%; " v-model="userInfo.secQuestions" filterable placeholder="Select Branch">
+               <el-select style="width: 100%; " v-model="credentialsInfo.secQuestions" filterable placeholder="Select Branch">
                     <el-option
-                    v-for="item in userInfo.questions"
+                    v-for="item in credentialsInfo.questions"
                     :key="item.question"
                     :label="item.question"
                     :value="item.question">
@@ -65,7 +65,7 @@
                 type="text"
                 placeholder="Enter security answer"
                 trigger="1"
-                v-model="userInfo.secAnswer"
+                v-model="credentialsInfo.secAnswer"
                 style="margin-top: 15px; width: 100%;"
                  />
             </div>
@@ -81,7 +81,7 @@ export default {
         TextField
     },
     props : {
-        userInfo : Object
+        credentialsInfo : Object
     }
 }
 </script>
