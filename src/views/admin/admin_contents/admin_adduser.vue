@@ -36,8 +36,7 @@ import Admintitle from "@/components/admin/admin_title"
 import UserForm from "@/components/admin/addUser/addUser"
 import UserCredentials from "@/components/admin/addUser/userCredentials"
 import DataPreview from "@/components/admin/addUser/dataPreview"
-import {PUSH_BRANCHES, GET_BRANCHES} from "@/store/types"
-import {PUSH_QUESTIONS, GET_QUESTIONS} from "@/store/types"
+import {PUSH_BRANCHES, GET_BRANCHES, PUSH_QUESTIONS, GET_QUESTIONS} from "@/store/types"
 import {mapGetters, mapActions} from 'vuex'
 export default {
     components: {
